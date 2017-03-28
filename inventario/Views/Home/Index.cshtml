@@ -1,0 +1,32 @@
+﻿
+@model List<inventario.Models.Alumno>
+
+<h2 class="page-header"> 
+    Alumno  
+</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Sexo</th>
+            <th>Fecha de Nacimiento</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <th>@(m.Nombre+" "+m.Apellido)</th>
+                <th>@(m.Sexo==1? "Hombre":"Mujer")</th>
+                <th>@m.FechaNacimiento</th>
+                
+                <th>
+                    <a class="btn btn-xs btn-primary btn-block" href="~/home/ver/@m.id">Ver</a>
+                    <a class="btn btn-xs btn-primary btn-block" href="~/home/crud/@m.id">Editar</a>
+                    <a onclick="return confirm('desea eliminar este registro?')" class="btn btn-xs btn-primary btn-block" href="~/home/eliminar/@m.id">Eliminar</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
