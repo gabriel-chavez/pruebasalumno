@@ -369,6 +369,8 @@
     <Content Include="assets\nprogress\support\extras.css" />
     <Content Include="assets\nprogress\support\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="assets\validacion\jquery.validate.min.js" />
+    <Content Include="assets\validacion\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +383,7 @@
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Models\AlumnoCurso.cs" />
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Models\TestContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -16,22 +16,25 @@
             <div class="form-group">
                 @Html.LabelFor(x => x.Nombre);
                 @Html.TextBoxFor(x=>x.Nombre, new { @class ="form-control"})
+                @Html.ValidationMessageFor(x => x.Nombre,null, new { @class = "label label-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.Apellido);
                 @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Apellido, null, new { @class = "label label-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.Sexo);
-                <select name="sexo" class="form-control">
-                    <option @(Model.Sexo == 1 ? "Selected" : "") >Hombre</option>
-                    <option @(Model.Sexo == 2 ? "Selected" : "") >Mujer</option>
+                <select name="Sexo" class="form-control">
+                    <option @(Model.Sexo == 1 ? "Selected" : "") value="1">Hombre</option>
+                    <option @(Model.Sexo == 2 ? "Selected" : "") value="2">Mujer</option>
 
                 </select>                
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.FechaNacimiento);
                 @Html.TextBoxFor(x => x.FechaNacimiento, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.FechaNacimiento, null, new { @class = "label label-danger" })
             </div>
         </div>
     </div>
@@ -41,3 +44,29 @@
 
 
 }
+<script>
+    $(document).ready(function () {
+        $("frm-alumno").submit(function () {
+            var form = $(this);
+            $.ajax({
+                dataType: 'JSON',
+                type: 'POST',
+                url: form.attr('action'),
+                data:form.serialize,
+                success: function (r) {
+                    if(r.response)
+                    {
+                        window.location.href = r.href;
+                    }
+                    else {
+                        alert(r.message);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus + ' ' + errorThrown);
+                }
+            });
+            return fasle;
+        })
+    })
+</script>

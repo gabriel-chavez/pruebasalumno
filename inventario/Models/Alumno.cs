@@ -78,13 +78,40 @@ namespace inventario.Models
             }
             return alumno;
         }
-        public void Guardar()
-        {           
+        //para  sincronico no ajax
+        //public void Guardar()
+        //{           
+        //    try
+        //    {
+        //        using (var ctx = new TestContext())
+        //        {
+        //            if(this.id>0)
+        //            {
+        //                ctx.Entry(this).State = System.Data.Entity.EntityState.Modified;
+        //            }
+        //            else
+        //            {
+        //                ctx.Entry(this).State = System.Data.Entity.EntityState.Added;
+        //            }
+        //            ctx.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        throw;
+        //    }            
+        //}
+
+        //para ajax
+        public ResponseModel Guardar()
+        {
+            var rm = new ResponseModel();
             try
             {
                 using (var ctx = new TestContext())
                 {
-                    if(this.id>0)
+                    if (this.id > 0)
                     {
                         ctx.Entry(this).State = System.Data.Entity.EntityState.Modified;
                     }
@@ -92,14 +119,15 @@ namespace inventario.Models
                     {
                         ctx.Entry(this).State = System.Data.Entity.EntityState.Added;
                     }
+                    rm.SetResponse(true);
                     ctx.SaveChanges();
                 }
             }
             catch (Exception e)
             {
-
                 throw;
-            }            
+            }
+            return rm;
         }
         public void Eliminar()
         {

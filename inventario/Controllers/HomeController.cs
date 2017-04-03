@@ -26,10 +26,30 @@ namespace inventario.Controllers
                 id==0? new Alumno():alumno.Obtener(id)
                 );
         }
-        public ActionResult Guardar(Alumno model)
+        //public ActionResult Guardar(Alumno model)
+        //{
+        //    if(ModelState.IsValid)
+        //    {
+        //        model.Guardar();
+        //        return Redirect("~/home");
+        //    }
+        //    else
+        //    {
+        //        return View("~/views/home/crud.cshtml", model);                
+        //    }            
+        //}
+        public JsonResult Guardar(Alumno model)
         {
-            model.Guardar();
-            return Redirect("~/home");
+            var rm = new ResponseModel();
+            if (ModelState.IsValid)
+            {
+                rm=model.Guardar();
+                if(rm.response)
+                {
+                    rm.href = Url.Content("~/home");
+                }
+            }
+            return Json(rm);
         }
         public ActionResult Eliminar(int id)
         {
