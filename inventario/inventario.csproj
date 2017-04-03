@@ -128,12 +128,15 @@
     <Content Include="assets\bootstrap\package.js" />
     <Content Include="assets\css\custom.css" />
     <Content Include="assets\css\custom.min.css" />
+    <Content Include="assets\css\ini.css" />
+    <Content Include="assets\css\loader.gif" />
     <Content Include="assets\fastclick\lib\fastclick.js" />
     <Content Include="assets\font-awesome\.gitignore" />
     <Content Include="assets\font-awesome\css\font-awesome.css" />
     <Content Include="assets\font-awesome\css\font-awesome.min.css" />
     <Content Include="assets\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="assets\form\jquery.form.js" />
     <Content Include="assets\iCheck\icheck.js" />
     <Content Include="assets\iCheck\icheck.min.js" />
     <Content Include="assets\iCheck\skins\all.css" />
@@ -363,6 +366,7 @@
     <Content Include="assets\jquery\src\wrap.js" />
     <Content Include="assets\js\custom.js" />
     <Content Include="assets\js\custom.min.js" />
+    <Content Include="assets\js\ini.js" />
     <Content Include="assets\nprogress\index.html" />
     <Content Include="assets\nprogress\nprogress.css" />
     <Content Include="assets\nprogress\nprogress.js" />
@@ -558,6 +562,7 @@
     <Content Include="assets\nprogress\Readme.md" />
     <Content Include="Views\Home\Ver.cshtml" />
     <Content Include="Views\Home\Crud.cshtml" />
+    <Content Include="Views\Home\Cursos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

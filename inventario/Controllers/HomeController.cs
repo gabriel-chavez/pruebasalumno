@@ -10,6 +10,8 @@ namespace inventario.Controllers
     public class HomeController : Controller
     {
         private Alumno alumno = new Alumno();
+        private AlumnoCurso alumno_curso= new AlumnoCurso();
+        private Curso curso = new Curso();
         // GET: Home
         public ActionResult Index()
         {
@@ -19,6 +21,34 @@ namespace inventario.Controllers
         public ActionResult Ver(int id)
         {           
             return View(alumno.Obtener(id));
+        }
+        public PartialViewResult Cursos(int Alumno_id)
+        {
+            //listamos los cursos de un alumno
+            ViewBag.cursosElegidos = alumno_curso.Listar(Alumno_id);
+            //listamos todos los cursos disponible
+            ViewBag.cursos = curso.Todos(Alumno_id);
+            //modelo
+            alumno_curso.Alumno_id = Alumno_id;
+            return PartialView();
+        }
+        public JsonResult GuardarCurso(AlumnoCurso model)
+        {
+            var rm = new ResponseModel();
+            if (ModelState.IsValid)
+            {
+                rm = model.Guardar();
+                if (rm.response)
+                {
+                    rm.function = "CargarCursos()";
+                    
+                }
+            }
+            return Json(rm);
+        }
+        public ActionResult prueba(int id)
+        {
+            return View();
         }
         public ActionResult Crud(int id=0)
         {
@@ -46,6 +76,7 @@ namespace inventario.Controllers
                 rm=model.Guardar();
                 if(rm.response)
                 {
+                    rm.function = "soyalgo()";
                     rm.href = Url.Content("~/home");
                 }
             }
