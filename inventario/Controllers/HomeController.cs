@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using inventario.Models;
+using System.IO;
 
 namespace inventario.Controllers
 {
@@ -12,6 +13,7 @@ namespace inventario.Controllers
         private Alumno alumno = new Alumno();
         private AlumnoCurso alumno_curso= new AlumnoCurso();
         private Curso curso = new Curso();
+        public Adjunto adjunto = new Adjunto();
         // GET: Home
         public ActionResult Index()
         {
@@ -30,6 +32,11 @@ namespace inventario.Controllers
             ViewBag.cursos = curso.Todos(Alumno_id);
             //modelo
             alumno_curso.Alumno_id = Alumno_id;
+            return PartialView(alumno_curso);//revisar, sin variable retornada tambien funciona
+        }
+        public PartialViewResult Adjuntos(int Alumno_id)
+        {
+            ViewBag.Adjuntos = adjunto.Listar(Alumno_id);
             return PartialView();
         }
         public JsonResult GuardarCurso(AlumnoCurso model)
@@ -46,16 +53,41 @@ namespace inventario.Controllers
             }
             return Json(rm);
         }
+        public JsonResult GuardarAdjunto(Adjunto model, HttpPostedFileBase Archivo)
+        {
+            var rm = new ResponseModel();
+            if(Archivo !=  null)
+            {
+                //nombre del archivo, lo renombramos para evitar su repeticion
+                string archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Archivo.FileName);
+                //ruta donde se guarda
+                Archivo.SaveAs(Server.MapPath("~/uploads/" + archivo));
+               // Archivo.SaveAs("~/uploads/" + archivo);
+                //establecemos el nombre
+                model.Archivo = archivo;
+                rm = model.Guardar();
+                if (rm.response)
+                {
+                    rm.function = "CargarAdjuntos()";
+
+                }
+            }
+            rm.SetResponse(false,"Debe adjuntar un archivo");
+            return Json(rm);
+        }
         public ActionResult prueba(int id)
         {
             return View();
         }
-        public ActionResult Crud(int id=0)
+        public ActionResult Crud(int id = 0)
         {
             return View(
-                id==0? new Alumno():alumno.Obtener(id)
+                id == 0 ? new Alumno() : alumno.Obtener(id)
                 );
         }
+        
+       
+
         //public ActionResult Guardar(Alumno model)
         //{
         //    if(ModelState.IsValid)

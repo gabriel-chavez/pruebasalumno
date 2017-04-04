@@ -563,6 +563,7 @@
     <Content Include="Views\Home\Ver.cshtml" />
     <Content Include="Views\Home\Crud.cshtml" />
     <Content Include="Views\Home\Cursos.cshtml" />
+    <Content Include="Views\Home\Adjuntos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -572,6 +573,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

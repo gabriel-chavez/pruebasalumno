@@ -12,6 +12,7 @@
     @if (Model.id > 0)
     {
         <li role="presentation"><a href="#cursos" aria-controls="cursos" role="tab" data-toggle="tab">Cursos</a></li>
+        <li role="presentation"><a href="#adjuntos" aria-controls="adjuntos" role="tab" data-toggle="tab">Adjuntos</a></li>
     }
     
 </ul>
@@ -57,8 +58,8 @@
     </div>
     @if (Model.id > 0)
     {
-        <div role="tabpanel" class="tab-pane " id="cursos">
-        </div>
+        <div role="tabpanel" class="tab-pane " id="cursos"></div>
+        <div role="tabpanel" class="tab-pane " id="adjuntos"></div>
     }
     
 </div>
@@ -68,6 +69,7 @@
         {
             <text>
                 CargarCursos()
+                CargarAdjuntos()
             </text>
 
         }
@@ -76,6 +78,9 @@
     function CargarCursos()
     {
         $("#cursos").load('@Url.Content("~/home/cursos/?Alumno_id="+Model.id)')
+    }
+    function CargarAdjuntos() {
+        $("#adjuntos").load('@Url.Content("~/home/adjuntos/?Alumno_id=" + Model.id)')
     }
 </script>
     <script>

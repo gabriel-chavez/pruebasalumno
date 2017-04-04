@@ -16,6 +16,8 @@ namespace inventario.Models
 
         public int? Curso_id { get; set; }
 
+        [Required(ErrorMessage ="Debe ingresar una nota para el alumno")]
+        [Range(0,20,ErrorMessage ="Debe ingresar una nora entre 0 y 20")]
         public int? Nota { get; set; }
 
         public virtual Alumno Alumno { get; set; }
